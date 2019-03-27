@@ -1,0 +1,10 @@
+/* BOXES */
+.box {width:30%}
+.box .left-top-corner {background:url(images/left-top-corner.png) no-repeat left top;height:15px;padding-left:15px}
+.box .right-top-corner {background:url(images/right-top-corner.png) no-repeat right top;height:15px;padding-right:15px}
+.box .border-top {height:15px;background:url(images/border-top.gif) repeat-x left top;font-size:0;line-height:0;width:100%}
+.box .left-bot-corner {background:url(images/left-bot-corner.png) no-repeat left bottom;height:15px;padding-left:15px}
+.box .right-bot-corner {background:url(images/right-bot-corner.png) no-repeat right bottom;height:15px;padding-right:15px}
+.box .border-bot {height:15px;background:url(images/border-bot.gif) repeat-x left top;font-size:0;line-height:0;width:100%}
+.box .xcontent {min-height:242px;background:url(images/box-tail.gif) repeat-x left top #ff6f1d;height:auto!important;height:242px}
+.box .xcontent .inner {padding:8px 26px 8px 26px}

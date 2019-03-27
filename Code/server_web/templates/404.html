@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Can not find the page{% endblock %} 
+{% block beforehead %}
+<link rel='stylesheet' href="{{ url_for('static', filename='css/404/bootstrap.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/404/animate.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/404/style.css')}}">
+
+
+<!-- Modernizr JS -->
+<script src="{{url_for('static', filename='js/404/modernizr-2.6.2.min.js')}}"></script>
+<!-- FOR IE9 below -->
+<!--[if lt IE 9]>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+{% endblock %} 
+	
+{% block content %}
+<div class="container fh5co-container">
+	<div class="row">
+		<div class="col-md-12 animate-box" data-animate-effect="fadeIn">
+			<div class="fh5co-404-wrap" id="video" data-vide-bg="static/video/Crocodile" data-vide-options="position: 0 50%">
+				<div class="overlay" style='background: url(static/images/404/404.svg) no-repeat center center; background-size:cover'></div>
+			</div>
+		</div>
+		<div class="col-md-12 text-center fh5co-404-text animate-box"  data-animate-effect="fadeIn">
+
+			<h1 class='uk-block-large' style='color:aliceblue'>Looks like we got lost ~</h1>
+			<p><a href="http://www.wuxsweb.cn" class="btn btn-primary">Go back home</a></p>
+		</div>
+	</div>
+</div>
+<!-- jQuery -->
+<script src="{{ url_for('static', filename='js/404/jquery.min.js')}}"></script>
+<!-- Bootstrap -->
+<script src="{{ url_for('static', filename='js/404/bootstrap.min.js')}}"></script>
+<!-- Vide -->
+<script src="{{ url_for('static', filename='js/404/jquery.vide.min.js')}}"></script>
+<!-- Waypoints -->
+<script src="{{ url_for('static', filename='js/404/jquery.waypoints.min.js')}}"></script>
+<!-- Main JS -->
+<script src="{{ url_for('static', filename='js/404/main.js')}}"></script>
+{% endblock %}
+

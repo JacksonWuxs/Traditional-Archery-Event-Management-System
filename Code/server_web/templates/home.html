@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %} Home {% endblock %} 
+{% block beforehead %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="homepage home-section text-center">
+        <br>
+        <strong><h1 style='color:aliceblue'>Welcome to Kitgram !</h1></strong>
+        <div id="myCarousel" class="carousel slide">
+            <!-- 轮播（Carousel）指标 -->
+            <ol class="carousel-indicators" >
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1" ></li>
+                <li data-target="#myCarousel" data-slide-to="2" ></li>
+            </ol>   
+            <!-- 轮播（Carousel）项目 -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <a href='http://dapy.wuxsweb.cn' target='_blank'><img src="http://wuxsweb.cn/static/images/home/dapy.png" alt="First slide" align='center'></a>
+                    <!-- div class="carousel-caption">DaPy</div -->
+                </div>
+                <div class="item">
+                    <a href='http://wuxsweb.cn/404' target='_blank'><img src="http://wuxsweb.cn/static/images/home/pfta.png" alt="Second slide" align='center'></a>
+                    <!-- div class="carousel-caption">Private File Transfer Assistant</div -->
+                </div>
+                <div class="item">
+                    <a href='http://taems.wuxsweb.cn' target='_blank'><img src="http://wuxsweb.cn/static/images/home/taems.png" alt="Third slide" align='center'></a>
+                    <!-- div class="carousel-caption">Traditional Archery Event Management System</div -->
+                </div>
+            </div>
+            <!-- 轮播（Carousel）导航 -->
+            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <div class="welcome-text">
+            <strong><p style='color:aliceblue'>Everything stored here is all developed and maintainted by our group. We hope they can figure out some issues that you are facing. Registering as a member can let you best experience our works!</p></strong>
+        </div>
+    </div>
+</div>
+{% endblock %}

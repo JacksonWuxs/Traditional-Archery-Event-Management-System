@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block title %} 中国大学生射箭（射艺）锦标赛报名 {% endblock %} 
+{% block beforehead %}
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="http://wuxsweb.cn/static/images/ucac/archery.ico" type="img/x-ico" />
+<style type="text/css">
+	#title{
+		width: 100%;
+		height: 100px;
+		margin: 0 auto;
+		background-color: white;
+	}
+	
+	h1{
+		text-align: center;
+		font-size: 300%;
+	}
+	
+	h2{
+		color: white;
+		line-height: 50px;
+		padding-left: 30px;
+	}
+	
+	p{
+		color: white;
+		font-size: 110%;
+	}
+	
+	#table1{
+		padding-left: 20px;
+	}
+	#table2{
+		padding-left: 20px;
+	}
+	.imform{
+		margin: 10px;
+		padding: 10px;
+		color:white;
+		font-size: 120%;
+	}
+	#input_school{
+		color:black;
+		width:75%;
+		height: 20px;
+	}
+	#input_mail{
+		color:black;
+		width: 27%;
+	}
+	#input_phone{
+		color:black;
+		width: 22%;
+	}
+	.input_coach_name{
+		color:black;
+		width: 15%;
+	}
+	.input_coach_mail{
+		color:black;
+		width: 27%;
+	}
+	.input_coach_phone{
+		color:black;
+		width: 22%;
+	}
+	
+	.name{
+		color:white;
+		width: 10%;
+	}
+	.sex{
+		color:white;
+		width: 5%;
+	}
+	.personal_ID{
+		color:white;
+		width: 10%;
+	}
+	.ID{
+		color:white;
+		width: 15%;
+	}
+	.phone{
+		color:white;
+		width: 15%;
+	}
+	.project{
+		color:white;
+		width: 7%;
+	}
+	.group{
+		color:white;
+		width: 5%;
+	}
+	.person{
+		color:white;
+		width: 10%;
+	}
+	.credentials{
+		color:white;
+		width: 10%;
+	}
+	#submit_imform{
+		margin-left: 45%;
+	}
+	.fileinput-button {
+		position: relative; 	 
+		overflow: hidden; 	 
+		background: white; 	 
+		color: black;
+		width: 70px; 	 height: 25px; 	 
+		font-size: 14px; 	 
+		text-align: center; 	 
+		border: 0; 	 
+		border-radius: 5%; 	 
+		line-height: 30px; 
+		}  
+	.fileinput-button:hover {
+	 	background: aliceblue; 
+	}  
+	.fileinput-button input { 	 
+		position: absolute; 	
+		top: 0; 	 
+		right: 0; 	 
+		margin: 0; 	 
+		opacity: 0; 	 
+		font-size: 150px; 	 
+		direction: ltr; 	 
+		cursor: pointer;  }
+</style>
+<script type="text/javascript"> 
+	function getRTime(){ 
+	var EndTime= new Date('2018/10/27 00:00:00'); //截止时间 
+	var NowTime = new Date(); 
+	var t =EndTime.getTime() - NowTime.getTime(); 
+		
+	var d=Math.floor(t/1000/60/60/24); 
+	var h=Math.floor(t/1000/60/60%24); 
+	var m=Math.floor(t/1000/60%60); 
+	var s=Math.floor(t/1000%60); 
+		
+	document.getElementById("t_d").innerHTML = d + "天"; 
+	document.getElementById("t_h").innerHTML = h + "时"; 
+	document.getElementById("t_m").innerHTML = m + "分"; 
+	document.getElementById("t_s").innerHTML = s + "秒"; 
+	} 
+	setInterval(getRTime,1000); 
+</script>
+{% endblock %}
+{% block content %}
+<h1 style='color:white'>欢迎参加 2018中国大学生射箭（射艺）锦标赛</h1>
+<div id="CountMsg" class="HotDate"> 
+	<p align='right'>距离报名截止：
+	<span id="t_d">00天</span> 
+	<span id="t_h">00时</span> 
+	<span id="t_m">00分</span> 
+	<span id="t_s">00秒</span> </p>
+</div> 
+
+<div class="main_text">
+	<h2>赛事信息</h2>
+	<hr>
+	<ul>
+		<li><p>比赛时间： 2018年11月9日---2018年11月11日</p></li>
+		<li><p>比赛地点： 上海对外经贸大学（松江校区）</p></li>
+		<li><p>报名时间： 2018年10月15日 09：00 - 2018年10月27日 00：00</p></li>
+		<li><p>赛事文件：<a href='http://wuxsweb.cn/Library/UCAC/document.pdf' type='button' class='btn btn-defaul' style='background-color:aliceblue' download='2018年中国大学生射箭（射艺）锦标赛竞赛规程.pdf'>下载</a> </p></li>
+	</ul>
+	
+	<form action="http://wuxsweb.cn/UCAC/Register" method="POST" enctype="multipart/form-data">
+		<h2>队伍报名</h2>
+		<hr>
+		<table id="table2">
+			<ul>
+				<li class="imform">学校：<input type="text" name="school" id="input_school" required='required' /></li>
+				<li class="imform">领队：<input type="text" name="leader" id="input_coach1_name"required='required' class='input_coach_name'/>
+				邮箱：<input type="email" name="leader_mail" id="input_mail" required='required'/>
+				电话：<input type="telephone" name="leader_phone" id="input_phone" required='required'/>
+				</li>
+				<li class="imform">教练：<input type="text" name="coach_name1" id="input_coach1_name" class="input_coach_name" required='required'/>
+				邮箱：<input type="email" name="coach1_mail" id="input_coach1_mail" class="input_coach_mail" required='required' />
+				电话：<input type="telephone" name="coach1_phone" id="input_couch1_phone" class="input_coach_phone" required='required'/>
+				</li>
+				<li class="imform">教练：<input type="text" name="coach_name2" id="input_coach2_name" class="input_coach_name" />
+				邮箱：<input type="email" name="coach2_mail" id="input_coach2_mail" class="input_coach_mail" />
+				电话：<input type="telephone" name="coach2_phone" id="input_couch2_phone" class="input_coach_phone" />
+				</li>
+				<li class="imform">教练：<input type="text" name="coach_name3" id="input_coach3_name" class="input_coach_name" />
+				邮箱：<input type="email" name="coach3_mail" id="input_coach3_mail" class="input_coach_mail" />
+				电话：<input type="telephone" name="coach3_phone" id="input_couch3_phone" class="input_coach_phone" />
+				</li>
+				<li class="imform">教练：<input type="text" name="coach_name4" id="input_coach4_name" class="input_coach_name" />
+				邮箱：<input type="email" name="coach4_mail" id="input_coach4_mail" class="input_coach_mail" />
+				电话：<input type="telephone" name="coach4_phone" id="input_couch4_phone" class="input_coach_phone" />
+				</li>
+			</ul>
+		</table>
+
+		<h2>运动员报名</h2>
+		<hr>
+		<table id="table1" style=' display:inline-block'>
+			<tr>
+				<td class="name">姓名</td>
+				<td class="sex">性别</td>
+				<td class="personal_ID">学／工号</td>
+				<td class="ID">身份证</td>
+				<td class="phone">手机</td>
+				<td class="project">项目</td>
+				<td class="group">组别</td>
+				<td class="person">赛制</td>
+				<td class="credentials">证件</td>
+			</tr>
+			<tr id="player1">
+				<td><input name="name1" type="text"  style='width: 90%; height:25px; color:black'/></td>
+				<td><select name="sex1"style='width: 90%; height:25px; color:black'>
+					<option value="male" selected="selected">男</option>
+					<option value="female">女</option></td>
+				<td><input name="students_id1" type="text" style='width: 90%; height:25px; color:black' /></td>
+				<td><input name="ID1" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><input name="phone1" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><select name="project1" style='width: 90%; height:25px; color:black'>
+					<option value="traditionA" selected="selected">传统甲组</option>
+					<option value="traditionB" selected="selected">传统乙组</option>
+					<option value="fanquA">反曲甲组</option>
+					<option value="fanquB">反曲乙组</option></td>
+				<td><select name="group1"style='width: 90%; height:25px;color:black'>
+					<option value="university" selected="selected">大学</option>
+					<option value="highschool">中学</option>
+					<option value="middleschool">小学</option>
+					<option value="jiaogong">教工</option></td>
+				<td><select name="type1" style='width: 90%; height:25px; color:black;'>
+					<option value='0' selected='selected'>仅个人</option>
+					<option value='1'>仅团体</option>
+					<option value='2'>团体及个人</option></td>
+				<td><div class='fileinput-button'>选择<input type='file' name='picture1'></div></td>
+			</tr>
+			
+			<tr id="player2">
+				<td><input name="name2" type="text"  style='width: 90%; height:25px; color:black'/></td>
+				<td><select name="sex2"style='width: 90%; height:25px; color:black'>
+					<option value="male" selected="selected">男</option>
+					<option value="female">女</option></td>
+				<td><input name="students_id2" type="text" style='width: 90%; height:25px; color:black' /></td>
+				<td><input name="ID2" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><input name="phone2" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><select name="project2" style='width: 90%; height:25px; color:black'>
+					<option value="traditionA" selected="selected">传统甲组</option>
+					<option value="traditionB" selected="selected">传统乙组</option>
+					<option value="fanquA">反曲甲组</option>
+					<option value="fanquB">反曲乙组</option></td>
+				<td><select name="group2"style='width: 90%; height:25px;color:black'>
+					<option value="university" selected="selected">大学</option>
+					<option value="highschool">中学</option>
+					<option value="middleschool">小学</option>
+					<option value="jiaogong">教工</option></td>
+				<td><select name="type2" style='width: 90%; height:25px; color:black;'>
+					<option value='0' selected='selected'>仅个人</option>
+					<option value='1'>仅团体</option>
+					<option value='2'>团体及个人</option></td>
+				<td><div class='fileinput-button'>选择<input type='file' name='picture2'></div></td>
+			</tr>
+			
+			<tr id="player3">
+				<td><input name="name3" type="text"  style='width: 90%; height:25px; color:black'/></td>
+				<td><select name="sex3"style='width: 90%; height:25px; color:black'>
+					<option value="male" selected="selected">男</option>
+					<option value="female">女</option></td>
+				<td><input name="students_id3" type="text" style='width: 90%; height:25px; color:black' /></td>
+				<td><input name="ID3" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><input name="phone3" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><select name="project3" style='width: 90%; height:25px; color:black'>
+					<option value="traditionA" selected="selected">传统甲组</option>
+					<option value="traditionB" selected="selected">传统乙组</option>
+					<option value="fanquA">反曲甲组</option>
+					<option value="fanquB">反曲乙组</option></td>
+				<td><select name="group3"style='width: 90%; height:25px;color:black'>
+					<option value="university" selected="selected">大学</option>
+					<option value="highschool">中学</option>
+					<option value="middleschool">小学</option>
+					<option value="jiaogong">教工</option></td>
+				<td><select name="type3" style='width: 90%; height:25px; color:black;'>
+					<option value='0' selected='selected'>仅个人</option>
+					<option value='1'>仅团体</option>
+					<option value='2'>团体及个人</option></td>
+				<td><div class='fileinput-button'>选择<input type='file' name='picture3'></div></td>
+			</tr>
+			
+			<tr id="player4">
+				<td><input name="name4" type="text"  style='width: 90%; height:25px; color:black'/></td>
+				<td><select name="sex4"style='width: 90%; height:25px; color:black'>
+					<option value="male" selected="selected">男</option>
+					<option value="female">女</option></td>
+				<td><input name="students_id4" type="text" style='width: 90%; height:25px; color:black' /></td>
+				<td><input name="ID4" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><input name="phone4" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><select name="project4" style='width: 90%; height:25px; color:black'>
+					<option value="traditionA" selected="selected">传统甲组</option>
+					<option value="traditionB" selected="selected">传统乙组</option>
+					<option value="fanquA">反曲甲组</option>
+					<option value="fanquB">反曲乙组</option></td>
+				<td><select name="group4"style='width: 90%; height:25px;color:black'>
+					<option value="university" selected="selected">大学</option>
+					<option value="highschool">中学</option>
+					<option value="middleschool">小学</option>
+					<option value="jiaogong">教工</option></td>
+				<td><select name="type4" style='width: 90%; height:25px; color:black;'>
+					<option value='0' selected='selected'>仅个人</option>
+					<option value='1'>仅团体</option>
+					<option value='2'>团体及个人</option></td>
+				<td><div class='fileinput-button'>选择<input type='file' name='picture4'></div></td>
+			</tr>
+			
+			<tr id="player5">
+				<td><input name="name5" type="text"  style='width: 90%; height:25px; color:black'/></td>
+				<td><select name="sex5"style='width: 90%; height:25px; color:black'>
+					<option value="male" selected="selected">男</option>
+					<option value="female">女</option></td>
+				<td><input name="students_id5" type="text" style='width: 90%; height:25px; color:black' /></td>
+				<td><input name="ID5" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><input name="phone5" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><select name="project5" style='width: 90%; height:25px; color:black'>
+					<option value="traditionA" selected="selected">传统甲组</option>
+					<option value="traditionB" selected="selected">传统乙组</option>
+					<option value="fanquA">反曲甲组</option>
+					<option value="fanquB">反曲乙组</option></td>
+				<td><select name="group5"style='width: 90%; height:25px;color:black'>
+					<option value="university" selected="selected">大学</option>
+					<option value="highschool">中学</option>
+					<option value="middleschool">小学</option>
+					<option value="jiaogong">教工</option></td>
+				<td><select name="type5" style='width: 90%; height:25px; color:black;'>
+					<option value='0' selected='selected'>仅个人</option>
+					<option value='1'>仅团体</option>
+					<option value='2'>团体及个人</option></td>
+				<td><div class='fileinput-button'>选择<input type='file' name='picture5'></div></td>
+			</tr>
+			
+			<tr id="player6">
+				<td><input name="name6" type="text"  style='width: 90%; height:25px; color:black'/></td>
+				<td><select name="sex6"style='width: 90%; height:25px; color:black'>
+					<option value="male" selected="selected">男</option>
+					<option value="female">女</option></td>
+				<td><input name="students_id6" type="text" style='width: 90%; height:25px; color:black' /></td>
+				<td><input name="ID6" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><input name="phone6" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><select name="project6" style='width: 90%; height:25px; color:black'>
+					<option value="traditionA" selected="selected">传统甲组</option>
+					<option value="traditionB" selected="selected">传统乙组</option>
+					<option value="fanquA">反曲甲组</option>
+					<option value="fanquB">反曲乙组</option></td>
+				<td><select name="group6"style='width: 90%; height:25px;color:black'>
+					<option value="university" selected="selected">大学</option>
+					<option value="highschool">中学</option>
+					<option value="middleschool">小学</option>
+					<option value="jiaogong">教工</option></td>
+				<td><select name="type6" style='width: 90%; height:25px; color:black;'>
+					<option value='0' selected='selected'>仅个人</option>
+					<option value='1'>仅团体</option>
+					<option value='2'>团体及个人</option></td>
+				<td><div class='fileinput-button'>选择<input type='file' name='picture6'></div></td>
+			</tr>
+			
+			<tr id="player7">
+				<td><input name="name7" type="text"  style='width: 90%; height:25px; color:black'/></td>
+				<td><select name="sex7"style='width: 90%; height:25px; color:black'>
+					<option value="male" selected="selected">男</option>
+					<option value="female">女</option></td>
+				<td><input name="students_id7" type="text" style='width: 90%; height:25px; color:black' /></td>
+				<td><input name="ID7" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><input name="phone7" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><select name="project7" style='width: 90%; height:25px; color:black'>
+					<option value="traditionA" selected="selected">传统甲组</option>
+					<option value="traditionB" selected="selected">传统乙组</option>
+					<option value="fanquA">反曲甲组</option>
+					<option value="fanquB">反曲乙组</option></td>
+				<td><select name="group7"style='width: 90%; height:25px;color:black'>
+					<option value="university" selected="selected">大学</option>
+					<option value="highschool">中学</option>
+					<option value="middleschool">小学</option>
+					<option value="jiaogong">教工</option></td>
+				<td><select name="type7" style='width: 90%; height:25px; color:black;'>
+					<option value='0' selected='selected'>仅个人</option>
+					<option value='1'>仅团体</option>
+					<option value='2'>团体及个人</option></td>
+				<td><div class='fileinput-button'>选择<input type='file' name='picture7'></div></td>
+			</tr>
+			
+			<tr id="player8">
+				<td><input name="name8" type="text"  style='width: 90%; height:25px; color:black'/></td>
+				<td><select name="sex8"style='width: 90%; height:25px; color:black'>
+					<option value="male" selected="selected">男</option>
+					<option value="female">女</option></td>
+				<td><input name="students_id8" type="text" style='width: 90%; height:25px; color:black' /></td>
+				<td><input name="ID8" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><input name="phone8" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><select name="project8" style='width: 90%; height:25px; color:black'>
+					<option value="traditionA" selected="selected">传统甲组</option>
+					<option value="traditionB" selected="selected">传统乙组</option>
+					<option value="fanquA">反曲甲组</option>
+					<option value="fanquB">反曲乙组</option></td>
+				<td><select name="group8"style='width: 90%; height:25px;color:black'>
+					<option value="university" selected="selected">大学</option>
+					<option value="highschool">中学</option>
+					<option value="middleschool">小学</option>
+					<option value="jiaogong">教工</option></td>
+				<td><select name="type8" style='width: 90%; height:25px; color:black;'>
+					<option value='0' selected='selected'>仅个人</option>
+					<option value='1'>仅团体</option>
+					<option value='2'>团体及个人</option></td>
+				<td><div class='fileinput-button'>选择<input type='file' name='picture8'></div></td>
+			</tr>
+			
+			<tr id="player9">
+				<td><input name="name9" type="text"  style='width: 90%; height:25px; color:black'/></td>
+				<td><select name="sex9"style='width: 90%; height:25px; color:black'>
+					<option value="male" selected="selected">男</option>
+					<option value="female">女</option></td>
+				<td><input name="students_id9" type="text" style='width: 90%; height:25px; color:black' /></td>
+				<td><input name="ID9" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><input name="phone9" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><select name="project9" style='width: 90%; height:25px; color:black'>
+					<option value="traditionA" selected="selected">传统甲组</option>
+					<option value="traditionB" selected="selected">传统乙组</option>
+					<option value="fanquA">反曲甲组</option>
+					<option value="fanquB">反曲乙组</option></td>
+				<td><select name="group9"style='width: 90%; height:25px;color:black'>
+					<option value="university" selected="selected">大学</option>
+					<option value="highschool">中学</option>
+					<option value="middleschool">小学</option>
+					<option value="jiaogong">教工</option></td>
+				<td><select name="type9" style='width: 90%; height:25px; color:black;'>
+					<option value='0' selected='selected'>仅个人</option>
+					<option value='1'>仅团体</option>
+					<option value='2'>团体及个人</option></td>
+				<td><div class='fileinput-button'>选择<input type='file' name='picture9'></div></td>
+			</tr>
+			
+			<tr id="player10">
+				<td><input name="name10" type="text"  style='width: 90%; height:25px; color:black'/></td>
+				<td><select name="sex10"style='width: 90%; height:25px; color:black'>
+					<option value="male" selected="selected">男</option>
+					<option value="female">女</option></td>
+				<td><input name="students_id10" type="text" style='width: 90%; height:25px; color:black' /></td>
+				<td><input name="ID10" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><input name="phone10" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><select name="project10" style='width: 90%; height:25px; color:black'>
+					<option value="traditionA" selected="selected">传统甲组</option>
+					<option value="traditionB" selected="selected">传统乙组</option>
+					<option value="fanquA">反曲甲组</option>
+					<option value="fanquB">反曲乙组</option></td>
+				<td><select name="group10"style='width: 90%; height:25px;color:black'>
+					<option value="university" selected="selected">大学</option>
+					<option value="highschool">中学</option>
+					<option value="middleschool">小学</option>
+					<option value="jiaogong">教工</option></td>
+				<td><select name="type10" style='width: 90%; height:25px; color:black;'>
+					<option value='0' selected='selected'>仅个人</option>
+					<option value='1'>仅团体</option>
+					<option value='2'>团体及个人</option></td>
+				<td><div class='fileinput-button'>选择<input type='file' name='picture10'></div></td>
+			</tr>
+			
+			<tr id="player11">
+				<td><input name="name11" type="text"  style='width: 90%; height:25px; color:black'/></td>
+				<td><select name="sex11"style='width: 90%; height:25px; color:black'>
+					<option value="male" selected="selected">男</option>
+					<option value="female">女</option></td>
+				<td><input name="students_id11" type="text" style='width: 90%; height:25px; color:black' /></td>
+				<td><input name="ID11" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><input name="phone11" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><select name="project11" style='width: 90%; height:25px; color:black'>
+					<option value="traditionA" selected="selected">传统甲组</option>
+					<option value="traditionB" selected="selected">传统乙组</option>
+					<option value="fanquA">反曲甲组</option>
+					<option value="fanquB">反曲乙组</option></td>
+				<td><select name="group11"style='width: 90%; height:25px;color:black'>
+					<option value="university" selected="selected">大学</option>
+					<option value="highschool">中学</option>
+					<option value="middleschool">小学</option>
+					<option value="jiaogong">教工</option></td>
+				<td><select name="type11" style='width: 90%; height:25px; color:black;'>
+					<option value='0' selected='selected'>仅个人</option>
+					<option value='1'>仅团体</option>
+					<option value='2'>团体及个人</option></td>
+				<td><div class='fileinput-button'>选择<input type='file' name='picture11'></div></td>
+			</tr>
+			
+			<tr id="player12">
+				<td><input name="name12" type="text"  style='width: 90%; height:25px; color:black'/></td>
+				<td><select name="sex12"style='width: 90%; height:25px; color:black'>
+					<option value="male" selected="selected">男</option>
+					<option value="female">女</option></td>
+				<td><input name="students_id12" type="text" style='width: 90%; height:25px; color:black' /></td>
+				<td><input name="ID12" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><input name="phone12" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><select name="project12" style='width: 90%; height:25px; color:black'>
+					<option value="traditionA" selected="selected">传统甲组</option>
+					<option value="traditionB" selected="selected">传统乙组</option>
+					<option value="fanquA">反曲甲组</option>
+					<option value="fanquB">反曲乙组</option></td>
+				<td><select name="group12"style='width: 90%; height:25px;color:black'>
+					<option value="university" selected="selected">大学</option>
+					<option value="highschool">中学</option>
+					<option value="middleschool">小学</option>
+					<option value="jiaogong">教工</option></td>
+				<td><select name="type12" style='width: 90%; height:25px; color:black;'>
+					<option value='0' selected='selected'>仅个人</option>
+					<option value='1'>仅团体</option>
+					<option value='2'>团体及个人</option></td>
+				<td><div class='fileinput-button'>选择<input type='file' name='picture12'></div></td>
+			</tr>
+			<tr id="player13">
+				<td><input name="name13" type="text"  style='width: 90%; height:25px; color:black'/></td>
+				<td><select name="sex13"style='width: 90%; height:25px; color:black'>
+					<option value="male" selected="selected">男</option>
+					<option value="female">女</option></td>
+				<td><input name="students_id13" type="text" style='width: 90%; height:25px; color:black' /></td>
+				<td><input name="ID13" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><input name="phone13" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><select name="project13" style='width: 90%; height:25px; color:black'>
+					<option value="traditionA" selected="selected">传统甲组</option>
+					<option value="traditionB" selected="selected">传统乙组</option>
+					<option value="fanquA">反曲甲组</option>
+					<option value="fanquB">反曲乙组</option></td>
+				<td><select name="group13"style='width: 90%; height:25px;color:black'>
+					<option value="university" selected="selected">大学</option>
+					<option value="highschool">中学</option>
+					<option value="middleschool">小学</option>
+					<option value="jiaogong">教工</option></td>
+				<td><select name="type13" style='width: 90%; height:25px; color:black;'>
+					<option value='0' selected='selected'>仅个人</option>
+					<option value='1'>仅团体</option>
+					<option value='2'>团体及个人</option></td>
+				<td><div class='fileinput-button'>选择<input type='file' name='picture13'></div></td>
+			</tr>
+			<tr id="player14">
+				<td><input name="name14" type="text"  style='width: 90%; height:25px; color:black'/></td>
+				<td><select name="sex14"style='width: 90%; height:25px; color:black'>
+					<option value="male" selected="selected">男</option>
+					<option value="female">女</option></td>
+				<td><input name="students_id14" type="text" style='width: 90%; height:25px; color:black' /></td>
+				<td><input name="ID14" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><input name="phone14" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><select name="project14" style='width: 90%; height:25px; color:black'>
+					<option value="traditionA" selected="selected">传统甲组</option>
+					<option value="traditionB" selected="selected">传统乙组</option>
+					<option value="fanquA">反曲甲组</option>
+					<option value="fanquB">反曲乙组</option></td>
+				<td><select name="group14"style='width: 90%; height:25px;color:black'>
+					<option value="university" selected="selected">大学</option>
+					<option value="highschool">中学</option>
+					<option value="middleschool">小学</option>
+					<option value="jiaogong">教工</option></td>
+				<td><select name="type14" style='width: 90%; height:25px; color:black;'>
+					<option value='0' selected='selected'>仅个人</option>
+					<option value='1'>仅团体</option>
+					<option value='2'>团体及个人</option></td>
+				<td><div class='fileinput-button'>选择<input type='file' name='picture14'></div></td>
+			</tr>
+			<tr id="player15">
+				<td><input name="name15" type="text"  style='width: 90%; height:25px; color:black'/></td>
+				<td><select name="sex15"style='width: 90%; height:25px; color:black'>
+					<option value="male" selected="selected">男</option>
+					<option value="female">女</option></td>
+				<td><input name="students_id15" type="text" style='width: 90%; height:25px; color:black' /></td>
+				<td><input name="ID15" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><input name="phone15" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><select name="project15" style='width: 90%; height:25px; color:black'>
+					<option value="traditionA" selected="selected">传统甲组</option>
+					<option value="traditionB" selected="selected">传统乙组</option>
+					<option value="fanquA">反曲甲组</option>
+					<option value="fanquB">反曲乙组</option></td>
+				<td><select name="group15"style='width: 90%; height:25px;color:black'>
+					<option value="university" selected="selected">大学</option>
+					<option value="highschool">中学</option>
+					<option value="middleschool">小学</option>
+					<option value="jiaogong">教工</option></td>
+				<td><select name="type15" style='width: 90%; height:25px; color:black;'>
+					<option value='0' selected='selected'>仅个人</option>
+					<option value='1'>仅团体</option>
+					<option value='2'>团体及个人</option></td>
+				<td><div class='fileinput-button'>选择<input type='file' name='picture15'></div></td>
+			</tr>
+			<tr id="player16">
+				<td><input name="name16" type="text"  style='width: 90%; height:25px; color:black'/></td>
+				<td><select name="sex16"style='width: 90%; height:25px; color:black'>
+					<option value="male" selected="selected">男</option>
+					<option value="female">女</option></td>
+				<td><input name="students_id16" type="text" style='width: 90%; height:25px; color:black' /></td>
+				<td><input name="ID16" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><input name="phone16" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><select name="project16" style='width: 90%; height:25px; color:black'>
+					<option value="traditionA" selected="selected">传统甲组</option>
+					<option value="traditionB" selected="selected">传统乙组</option>
+					<option value="fanquA">反曲甲组</option>
+					<option value="fanquB">反曲乙组</option></td>
+				<td><select name="group16"style='width: 90%; height:25px;color:black'>
+					<option value="university" selected="selected">大学</option>
+					<option value="highschool">中学</option>
+					<option value="middleschool">小学</option>
+					<option value="jiaogong">教工</option></td>
+				<td><select name="type16" style='width: 90%; height:25px; color:black;'>
+					<option value='0' selected='selected'>仅个人</option>
+					<option value='1'>仅团体</option>
+					<option value='2'>团体及个人</option></td>
+				<td><div class='fileinput-button'>选择<input type='file' name='picture16'></div></td>
+			</tr>
+			<tr id="player17">
+				<td><input name="name17" type="text"  style='width: 90%; height:25px; color:black'/></td>
+				<td><select name="sex17"style='width: 90%; height:25px; color:black'>
+					<option value="male" selected="selected">男</option>
+					<option value="female">女</option></td>
+				<td><input name="students_id17" type="text" style='width: 90%; height:25px; color:black' /></td>
+				<td><input name="ID17" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><input name="phone17" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><select name="project17" style='width: 90%; height:25px; color:black'>
+					<option value="traditionA" selected="selected">传统甲组</option>
+					<option value="traditionB" selected="selected">传统乙组</option>
+					<option value="fanquA">反曲甲组</option>
+					<option value="fanquB">反曲乙组</option></td>
+				<td><select name="group17"style='width: 90%; height:25px;color:black'>
+					<option value="university" selected="selected">大学</option>
+					<option value="highschool">中学</option>
+					<option value="middleschool">小学</option>
+					<option value="jiaogong">教工</option></td>
+				<td><select name="type17" style='width: 90%; height:25px; color:black;'>
+					<option value='0' selected='selected'>仅个人</option>
+					<option value='1'>仅团体</option>
+					<option value='2'>团体及个人</option></td>
+				<td><div class='fileinput-button'>选择<input type='file' name='picture17'></div></td>
+			</tr>
+			<tr id="d8">
+				<td><input name="name18" type="text"  style='width: 90%; height:25px; color:black'/></td>
+				<td><select name="sex18"style='width: 90%; height:25px; color:black'>
+					<option value="male" selected="selected">男</option>
+					<option value="female">女</option></td>
+				<td><input name="students_id18" type="text" style='width: 90%; height:25px; color:black' /></td>
+				<td><input name="ID18" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><input name="phone18" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><select name="project18" style='width: 90%; height:25px; color:black'>
+					<option value="traditionA" selected="selected">传统甲组</option>
+					<option value="traditionB" selected="selected">传统乙组</option>
+					<option value="fanquA">反曲甲组</option>
+					<option value="fanquB">反曲乙组</option></td>
+				<td><select name="group18"style='width: 90%; height:25px;color:black'>
+					<option value="university" selected="selected">大学</option>
+					<option value="highschool">中学</option>
+					<option value="middleschool">小学</option>
+					<option value="jiaogong">教工</option></td>
+				<td><select name="type18" style='width: 90%; height:25px; color:black;'>
+					<option value='0' selected='selected'>仅个人</option>
+					<option value='1'>仅团体</option>
+					<option value='2'>团体及个人</option></td>
+				<td><div class='fileinput-button'>选择<input type='file' name='picture18'></div></td>
+			</tr>
+			<tr id="player19">
+				<td><input name="name19" type="text"  style='width: 90%; height:25px; color:black'/></td>
+				<td><select name="sex19"style='width: 90%; height:25px; color:black'>
+					<option value="male" selected="selected">男</option>
+					<option value="female">女</option></td>
+				<td><input name="students_id19" type="text" style='width: 90%; height:25px; color:black' /></td>
+				<td><input name="ID19" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><input name="phone19" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><select name="project19" style='width: 90%; height:25px; color:black'>
+					<option value="traditionA" selected="selected">传统甲组</option>
+					<option value="traditionB" selected="selected">传统乙组</option>
+					<option value="fanquA">反曲甲组</option>
+					<option value="fanquB">反曲乙组</option></td>
+				<td><select name="group19"style='width: 90%; height:25px;color:black'>
+					<option value="university" selected="selected">大学</option>
+					<option value="highschool">中学</option>
+					<option value="middleschool">小学</option>
+					<option value="jiaogong">教工</option></td>
+				<td><select name="type19" style='width: 90%; height:25px; color:black;'>
+					<option value='0' selected='selected'>仅个人</option>
+					<option value='1'>仅团体</option>
+					<option value='2'>团体及个人</option></td>
+				<td><div class='fileinput-button'>选择<input type='file' name='picture19'></div></td>
+			</tr>
+			<tr id="player20">
+				<td><input name="name20" type="text"  style='width: 90%; height:25px; color:black'/></td>
+				<td><select name="sex20"style='width: 90%; height:25px; color:black'>
+					<option value="male" selected="selected">男</option>
+					<option value="female">女</option></td>
+				<td><input name="students_id20" type="text" style='width: 90%; height:25px; color:black' /></td>
+				<td><input name="ID20" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><input name="phone20" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><select name="project20" style='width: 90%; height:25px; color:black'>
+					<option value="traditionA" selected="selected">传统甲组</option>
+					<option value="traditionB" selected="selected">传统乙组</option>
+					<option value="fanquA">反曲甲组</option>
+					<option value="fanquB">反曲乙组</option></td>
+				<td><select name="group20"style='width: 90%; height:25px;color:black'>
+					<option value="university" selected="selected">大学</option>
+					<option value="highschool">中学</option>
+					<option value="middleschool">小学</option>
+					<option value="jiaogong">教工</option></td>
+				<td><select name="type20" style='width: 90%; height:25px; color:black;'>
+					<option value='0' selected='selected'>仅个人</option>
+					<option value='1'>仅团体</option>
+					<option value='2'>团体及个人</option></td>
+				<td><div class='fileinput-button'>选择<input type='file' name='picture20'></div></td>
+			</tr>
+			<tr id="player21">
+				<td><input name="name21" type="text"  style='width: 90%; height:25px; color:black'/></td>
+				<td><select name="sex21"style='width: 90%; height:25px; color:black'>
+					<option value="male" selected="selected">男</option>
+					<option value="female">女</option></td>
+				<td><input name="students_id21" type="text" style='width: 90%; height:25px; color:black' /></td>
+				<td><input name="ID21" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><input name="phone21" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><select name="project21" style='width: 90%; height:25px; color:black'>
+					<option value="traditionA" selected="selected">传统甲组</option>
+					<option value="traditionB" selected="selected">传统乙组</option>
+					<option value="fanquA">反曲甲组</option>
+					<option value="fanquB">反曲乙组</option></td>
+				<td><select name="group21"style='width: 90%; height:25px;color:black'>
+					<option value="university" selected="selected">大学</option>
+					<option value="highschool">中学</option>
+					<option value="middleschool">小学</option>
+					<option value="jiaogong">教工</option></td>
+				<td><select name="type21" style='width: 90%; height:25px; color:black;'>
+					<option value='0' selected='selected'>仅个人</option>
+					<option value='1'>仅团体</option>
+					<option value='2'>团体及个人</option></td>
+				<td><div class='fileinput-button'>选择<input type='file' name='picture21'></div></td>
+			</tr>
+			<tr id="player22">
+				<td><input name="name22" type="text"  style='width: 90%; height:25px; color:black'/></td>
+				<td><select name="sex22"style='width: 90%; height:25px; color:black'>
+					<option value="male" selected="selected">男</option>
+					<option value="female">女</option></td>
+				<td><input name="students_id22" type="text" style='width: 90%; height:25px; color:black' /></td>
+				<td><input name="ID22" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><input name="phone22" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><select name="project22" style='width: 90%; height:25px; color:black'>
+					<option value="traditionA" selected="selected">传统甲组</option>
+					<option value="traditionB" selected="selected">传统乙组</option>
+					<option value="fanquA">反曲甲组</option>
+					<option value="fanquB">反曲乙组</option></td>
+				<td><select name="group22"style='width: 90%; height:25px;color:black'>
+					<option value="university" selected="selected">大学</option>
+					<option value="highschool">中学</option>
+					<option value="middleschool">小学</option>
+					<option value="jiaogong">教工</option></td>
+				<td><select name="type22" style='width: 90%; height:25px; color:black;'>
+					<option value='0' selected='selected'>仅个人</option>
+					<option value='1'>仅团体</option>
+					<option value='2'>团体及个人</option></td>
+				<td><div class='fileinput-button'>选择<input type='file' name='picture22'></div></td>
+			</tr>
+			<tr id="player23">
+				<td><input name="name23" type="text"  style='width: 90%; height:25px; color:black'/></td>
+				<td><select name="sex23"style='width: 90%; height:25px; color:black'>
+					<option value="male" selected="selected">男</option>
+					<option value="female">女</option></td>
+				<td><input name="students_id23" type="text" style='width: 90%; height:25px; color:black' /></td>
+				<td><input name="ID23" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><input name="phone23" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><select name="project23" style='width: 90%; height:25px; color:black'>
+					<option value="traditionA" selected="selected">传统甲组</option>
+					<option value="traditionB" selected="selected">传统乙组</option>
+					<option value="fanquA">反曲甲组</option>
+					<option value="fanquB">反曲乙组</option></td>
+				<td><select name="group23"style='width: 90%; height:25px;color:black'>
+					<option value="university" selected="selected">大学</option>
+					<option value="highschool">中学</option>
+					<option value="middleschool">小学</option>
+					<option value="jiaogong">教工</option></td>
+				<td><select name="type23" style='width: 90%; height:25px; color:black;'>
+					<option value='0' selected='selected'>仅个人</option>
+					<option value='1'>仅团体</option>
+					<option value='2'>团体及个人</option></td>
+				<td><div class='fileinput-button'>选择<input type='file' name='picture23'></div></td>
+			</tr>
+			<tr id="player24">
+				<td><input name="name24" type="text"  style='width: 90%; height:25px; color:black'/></td>
+				<td><select name="sex24"style='width: 90%; height:25px; color:black'>
+					<option value="male" selected="selected">男</option>
+					<option value="female">女</option></td>
+				<td><input name="students_id24" type="text" style='width: 90%; height:25px; color:black' /></td>
+				<td><input name="ID24" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><input name="phone24" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><select name="project24" style='width: 90%; height:25px; color:black'>
+					<option value="traditionA" selected="selected">传统甲组</option>
+					<option value="traditionB" selected="selected">传统乙组</option>
+					<option value="fanquA">反曲甲组</option>
+					<option value="fanquB">反曲乙组</option></td>
+				<td><select name="group24"style='width: 90%; height:25px;color:black'>
+					<option value="university" selected="selected">大学</option>
+					<option value="highschool">中学</option>
+					<option value="middleschool">小学</option>
+					<option value="jiaogong">教工</option></td>
+				<td><select name="type24" style='width: 90%; height:25px; color:black;'>
+					<option value='0' selected='selected'>仅个人</option>
+					<option value='1'>仅团体</option>
+					<option value='2'>团体及个人</option></td>
+				<td><div class='fileinput-button'>选择<input type='file' name='picture24'></div></td>
+			</tr>
+			<tr id="player25">
+				<td><input name="name25" type="text"  style='width: 90%; height:25px; color:black'/></td>
+				<td><select name="sex25"style='width: 90%; height:25px; color:black'>
+					<option value="male" selected="selected">男</option>
+					<option value="female">女</option></td>
+				<td><input name="students_id25" type="text" style='width: 90%; height:25px; color:black' /></td>
+				<td><input name="ID25" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><input name="phone25" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><select name="project25" style='width: 90%; height:25px; color:black'>
+					<option value="traditionA" selected="selected">传统甲组</option>
+					<option value="traditionB" selected="selected">传统乙组</option>
+					<option value="fanquA">反曲甲组</option>
+					<option value="fanquB">反曲乙组</option></td>
+				<td><select name="group25"style='width: 90%; height:25px;color:black'>
+					<option value="university" selected="selected">大学</option>
+					<option value="highschool">中学</option>
+					<option value="middleschool">小学</option>
+					<option value="jiaogong">教工</option></td>
+				<td><select name="type25" style='width: 90%; height:25px; color:black;'>
+					<option value='0' selected='selected'>仅个人</option>
+					<option value='1'>仅团体</option>
+					<option value='2'>团体及个人</option></td>
+				<td><div class='fileinput-button'>选择<input type='file' name='picture25'></div></td>
+			</tr>
+			<tr id="player26">
+				<td><input name="name26" type="text"  style='width: 90%; height:25px; color:black'/></td>
+				<td><select name="sex26"style='width: 90%; height:25px; color:black'>
+					<option value="male" selected="selected">男</option>
+					<option value="female">女</option></td>
+				<td><input name="students_id26" type="text" style='width: 90%; height:25px; color:black' /></td>
+				<td><input name="ID26" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><input name="phone26" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><select name="project26" style='width: 90%; height:25px; color:black'>
+					<option value="traditionA" selected="selected">传统甲组</option>
+					<option value="traditionB" selected="selected">传统乙组</option>
+					<option value="fanquA">反曲甲组</option>
+					<option value="fanquB">反曲乙组</option></td>
+				<td><select name="group26"style='width: 90%; height:25px;color:black'>
+					<option value="university" selected="selected">大学</option>
+					<option value="highschool">中学</option>
+					<option value="middleschool">小学</option>
+					<option value="jiaogong">教工</option></td>
+				<td><select name="type26" style='width: 90%; height:25px; color:black;'>
+					<option value='0' selected='selected'>仅个人</option>
+					<option value='1'>仅团体</option>
+					<option value='2'>团体及个人</option></td>
+				<td><div class='fileinput-button'>选择<input type='file' name='picture26'></div></td>
+			</tr>
+			<tr id="player27">
+				<td><input name="name27" type="text"  style='width: 90%; height:25px; color:black'/></td>
+				<td><select name="sex27"style='width: 90%; height:25px; color:black'>
+					<option value="male" selected="selected">男</option>
+					<option value="female">女</option></td>
+				<td><input name="students_id27" type="text" style='width: 90%; height:25px; color:black' /></td>
+				<td><input name="ID27" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><input name="phone27" type="text"  style='width: 90%; height:25px;color:black' /></td>
+				<td><select name="project27" style='width: 90%; height:25px; color:black'>
+					<option value="traditionA" selected="selected">传统甲组</option>
+					<option value="traditionB" selected="selected">传统乙组</option>
+					<option value="fanquA">反曲甲组</option>
+					<option value="fanquB">反曲乙组</option></td>
+				<td><select name="group27"style='width: 90%; height:25px;color:black'>
+					<option value="university" selected="selected">大学</option>
+					<option value="highschool">中学</option>
+					<option value="middleschool">小学</option>
+					<option value="jiaogong">教工</option></td>
+				<td><select name="type27" style='width: 90%; height:25px; color:black;'>
+					<option value='0' selected='selected'>仅个人</option>
+					<option value='1'>仅团体</option>
+					<option value='2'>团体及个人</option></td>
+				<td><div class='fileinput-button'>选择<input type='file' name='picture27'></div></td>
+			</tr>
+	</table>
+		<br>
+		<br>
+		<hr>
+		<br>
+		<input type="submit" class='btn btn-default' value='提交申请' id="submit_imform" />
+	</form>
+</div>
+getRTime();
+{% endblock %}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block title %} Login JW's Library {% endblock %} 
+{% block beforehead %}
+<script src="http://wuxsweb.cn/static/js/login/jquery.min.js"></script>
+<link rel="stylesheet" href="http://wuxsweb.cn/static/css/login/style.css">
+<script type="application/x-javascript"> 
+	addEventListener("load", function() {
+		 setTimeout(hideURLbar, 0); 
+	}, false); 
+	function hideURLbar(){
+		 window.scrollTo(0,1);};
+    function ERROR_INFO(msg){
+        var info = document.getElementById('info');
+        info.style.cssText = 'display:block; color:red; ';
+        info.innerText = msg;}
+    function INFO_INFO(msg){
+        var info = document.getElementById('info');
+        info.style.cssText = 'display:block; color:Greenyellow'
+        info.innerText = msg;};
+</script>
+<style>
+	.left{
+		float:left;
+	}
+	.right{
+		float:right;
+	}</style>
+{% endblock %} 
+{% block content %}
+<div class="main-agileinfo">
+    <h2>Login Now!</h2>
+	<form action="http://wuxsweb.cn/login" method="post">
+		<input type="text" name="email" placeholder="E-mail" style='color:rgb(26, 18, 17)' required>
+		<input type="password" name="password" placeholder="Password" style='color:rgb(26, 18, 17)' required>
+		<div class='contain'>
+			<span class='left'><a href="../forgetpassword" style='color:white'>Forget?</a></span>
+			<span class='right'><a href="../register" style='color:white'>Register!</a></span>
+		</div>
+		<strong><label id='info' type='text' style='color:crimson; font-size:24px'></label></strong>
+		<input type="submit" value="Login">
+	</form>
+</div>
+{% if type == 'INFO'%}
+<script>INFO_INFO("{{errors}}")</script>
+{% elif type == 'ERROR' %}
+<script>ERROR_INFO("{{errors}}")</script>
+{% endif %}
+{% endblock %}

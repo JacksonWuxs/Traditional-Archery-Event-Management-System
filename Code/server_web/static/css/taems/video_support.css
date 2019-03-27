@@ -1,0 +1,8 @@
+video {display: block;}
+
+video#bgvid{
+    position: fixed;
+    width: auto; height: auto; z-index:-100;
+    background: url(static/video/polina.jpg) no-repeat;
+    background-size: cover;
+}

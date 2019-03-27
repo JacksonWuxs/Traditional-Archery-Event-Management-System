@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %} Home {% endblock %} 
+{% block beforehead %}
+<link href="http://wuxsweb.cn/static/css/countdown/style.css" rel="stylesheet" type="text/css" media="all" />
+ <script type="text/javascript" src="http://wuxsweb.cn/static/js/countdown/moment.js"></script>
+ <script type="text/javascript" src="http://wuxsweb.cn/static/js/countdown/moment-timezone-with-data.js"></script>
+ <script type="text/javascript" src="http://wuxsweb.cn/static/js/countdown/timer.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="w3-heading-top">
+    <h3>2018中国大学生射箭（射艺）锦标赛</h3>
+    <p>报名开始时间：2018年10月15日 09:00</p>
+</div>
+<div class="clock w3agile">
+    <div class="column days">
+        <div class="timer" id="days"></div>
+        <div class="text">天</div>
+    </div>
+
+    <div class="column">
+        <div class="timer" id="hours"></div>
+        <div class="text">小时</div>
+    </div>
+
+    <div class="column">
+        <div class="timer" id="minutes"></div>
+        <div class="text">分钟</div>
+    </div>
+
+    <div class="column">
+        <div class="timer" id="seconds"></div>
+        <div class="text">秒</div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,97 @@
+<!doctype html>
+<head>
+    <meta charset="utf-8" />
+    {% block meta %}<!-- block meta  -->{% endblock %}
+    <title>{% block title %} ? {% endblock %} - Kitgram</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name='author' content='Xuansheng Wu'>
+    <meta name='keywords' content='Kitgram, TAEMS,Traditional Archery Event Management System, Archery, system, JW,JW_Library'>
+    <meta name="description" content="Kitgram">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://www.kitgram.cn/static/css/base/font-awesome.css">
+    <link rel="stylesheet" href="http://www.kitgram.cn/static/fonts/base/Raleway.css" type='text/css'>
+    <link rel="stylesheet" href="http://www.kitgram.cn/static/css/base/templatemo-style.css">
+    <link rel="stylesheet" href="http://www.kitgram.cn/static/css/base/bootstrap.min.css">
+    <link rel='stylesheet' href='http://www.kitgram.cn/static/css/base/uikit.css'>
+    <script src='http://www.kitgram.cn/static/js/base/jquery.min.js'></script>
+    <script src='http://www.kitgram.cn/static/js/base/bootstrap.min.js'></script>
+    <script type='text/javascript'>
+    var notice = function notifyMe(title, body) {
+    if (!("Notification" in window)) {
+        alert("This browser does not support desktop notification");}
+    else if (Notification.permission === "granted") {
+        var notification = new Notification(title, {body:body}); 
+        alert(body);}
+    else if (Notification.permission !== 'denied') {
+        Notification.requestPermission(function (permission) {
+            if (permission === "granted") {
+                var notification = new Notification(title, {body:body, icon:'http://www.kitgram.cn/static/msg.ico'}); 
+                alert(body);}});}
+    }
+    </script>
+    {% block beforehead %}<!-- before head  -->{% endblock %}
+</head>
+<body>
+    <div class="site-bg"></div>
+    
+    <!-- TOP HEADER -->
+    <div class='top-header' style='z-index: 2; position: relative;'>
+        <div class='container' role="navigation">
+            <div class="navbar-header">
+                <a class="navbar-brand" style='color:white; font-size:30px' href="http://www.kitgram.cn"><strong style='color:aquamarine'>K</strong>itgram</a>
+            </div>
+            <div class="navbar-right"  style='padding-top:1%'>
+                <div class="btn-group" height=15px style="color:white">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" >
+                        Users
+                    </button>
+                    <ul class="dropdown-menu" role="menu" >
+                        <li><a href='http://www.kitgram.cn/register' style='color:black' target='_blank'>Sign Up</a></li>
+                        <li><a href='http://www.kitgram.cn/login' style='color:black' target='_blank'>Sign In</a></li>
+                    </ul>
+                </div>
+
+                <div class="btn-group" height=15px style="color:white">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" >
+                        Programs
+                    </button>
+                    <ul class="dropdown-menu" role="menu" >
+                        <li><a href="http://dapy.kitgram.cn" style='color:black' target='_blank'>DaPy</a></li>
+                        <li><a href="http://taems.kitgram.cn" style='color:black' target='_blank'>Traditional Archery Event Management System</a></li>
+                        <li><a href="#" style='color:black' target='_blank'>Private File Transfer Assistant</a></li>
+                    </ul>
+                </div>
+                
+                <div class="btn-group" height=15px style="color:white">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        Researches
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#" style='color:black'>Cervical Cancer Screen</a></li>
+                        <li><a href="#" style='color:black'>Value Stability Strategy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div> <!-- .top-header -->
+    <div class="container" id="page-content" style='z-index:1; position: relative'>
+        <!-- content -->
+        {% block content %}
+        {% endblock %}
+        <!-- // content -->
+    </div>
+     <!-- SITE-FOOTER -->
+     <div class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <p style='color:aliceblue'>Copyright &copy; 2018 Xuansheng Wu | More Info on <a href="http://www.github.com/JacksonWuxs" target="_blank" title="Github">Github</a></p>
+                    <p style='color:aliceblue'><a href='http://www.miitbeian.gov.cn' style='color: white' target='_blank'>沪ICP备18028272号</a></p>
+                </div>
+            </div>
+        </div>
+    </div> <!-- .site-footer -->
+    {% if type == 'INFO'%}
+        <script>notice("{{title}}", "{{body}}")</script>
+    {% endif %}
+</body>

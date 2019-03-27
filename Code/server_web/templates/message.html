@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %} Message {% endblock %} 
+{% block beforehead %}
+<link href='http://wuxsweb.cn/static/css/message/base.css' rel='stylesheet' type='text/css'>
+<link href='http://wuxsweb.cn/static/css/message/system-core.css' rel='stylesheet' type='text/css'>
+<link href='http://wuxsweb.cn/static/css/message/function.css' rel='stylesheet' type='text/css'>
+<link href='http://wuxsweb.cn/static/css/message/page-ui_a236083.css' rel='stylesheet' type='text/css'>
+<link href='http://wuxsweb.cn/static/css/message/system_95f8a99.css' rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block content %}
+<div class='container' style='padding-top: 15%; padding-bottom: 15%'>
+    <div class='verify-form'>
+        <div class='CMxQsC' style='text-align: center; background-color:rgb(10, 52, 110)'>
+            <h1 style='padding:3%'> <font size='8' color='EMERAILD'>{{TITLE}}</font></h1>
+        </div>
+        <div class='ac-close' style='background-color:rgb(46, 60, 99)'>
+            <p style='padding:1%'><font size='4' color='white'>{{INFO}}</font></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

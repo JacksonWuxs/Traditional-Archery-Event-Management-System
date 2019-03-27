@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block title %} Recharge in Jackson Woo's Library {% endblock %} 
+{% block beforehead %}{% endblock %}
+
+{% block content %}
+<center>
+<div class='uk-margin-auto'>
+	<h1>Recharge your account !</h1>
+	<form action='/pay/request' method='POST' class="uk-form uk-form-stacked">
+		<div class="uk-form-row">
+			<div class="uk-form-controls">
+				<input name="money" required=True maxlength="5" minlength='1' type="text" style='color:rgb(26, 18, 17)' placeholder="How much you want to pay">
+				<br>
+				<br>
+				<button type="submit" class="uk-button uk-button-primary">
+                    			<i class="uk-icon-user"></i>Go to Pay !</button>
+			</div>
+		</div>
+	</form>
+</div></center>
+{% endblock %}

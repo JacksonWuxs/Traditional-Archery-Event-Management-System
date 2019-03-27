@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% block title %} Register a new account in Jackson Woo's Library {% endblock %} 
+{% block beforehead %}
+
+<script src="http://wuxsweb.cn/static/js/register/jquery.min.js"></script>
+<link rel="stylesheet" href="http://wuxsweb.cn/static/css/register/style.css">
+
+<script type='text/javascript'>
+    function check_form() {
+        var psd1 = document.getElementById('psd1');
+        var psd2 = document.getElementById('psd2');
+        var info = document.getElementById('info');
+        if (psd1.value != psd2.value){
+            info.style.cssText = 'display:block; color:crimson';
+            info.innerText = 'two passwords do not pair';
+            return false;
+        }
+        info.innerText = '';
+        return true;
+    };
+    function ERROR_INFO(msg){
+        var info = document.getElementById('info');
+        info.style.cssText = 'display:block; color:crimson; ';
+        info.innerText = msg;
+    }
+    function INFO_INFO(msg){
+        var info = document.getElementById('info');
+        info.style.cssText = 'display:block; color:Greenyellow'
+        info.innerText = msg;
+    };
+</script> 
+{% endblock %} 
+
+{% block content %}
+<div class="main-agileinfo" style='align-content: center'>
+    <h2>Join Now!</h2>
+    <form action="http://wuxsweb.cn/register" method="post">
+        <input name="name" pattern='^[0-9a-zA-Z\u4e00-\u9fa5_]{3,16}$' oninvalid='setCustomValidity("User name at least 3 characters and no symbols.");' oninput="setCustomValidity('');"
+        required type="text" style='color:rgb(26, 18, 17)' placeholder="User Name">
+
+        <input id='email' name="email" pattern='^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z].{2,4})$' oninvalid="setCustomValidity('Please input a valid e-mail address.');"  oninput="setCustomValidity('');"
+        required type="text" style='color:rgb(26, 18, 17)' placeholder='E-Mail'>
+
+        <input id='psd1' name="password" pattern='^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,30}$' oninvalid="setCustomValidity('At least 6 charcters with one capital, one lower case and one digital.');" oninput="setCustomValidity('');" 
+        required type="password" name="password" style='color:rgb(26, 18, 17)' placeholder='Password'>
+
+        <input id='psd2' name="password2" pattern='^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,30}$' oninvalid="setCustomValidity('At least 6 charcters with one capital, one lower case and one digital.');"  oninput="setCustomValidity('');" 
+        required type="password" style='color:rgb(26, 18, 17)' placeholder='Confirm Password'>
+        <label id='info' type='text' style='color:crimson; font-size:24px'></label>
+        <input type="submit" name='check' value="Create Now" onClick='return check_form()'>
+    </form>
+</div>
+{% if type == 'INFO'%}
+<script>INFO_INFO("{{errors}}")</script>
+{% elif type == 'ERROR' %}
+<script>ERROR_INFO("{{errors}}")</script>
+{% endif %}
+{% endblock %}
+
