@@ -19,8 +19,8 @@ import global_variables as gb_v
 __author__ = 'Xuansheng WU'
 __email__ = 'kitgram@163.com'
 __platform__ = 'http://www.Kitgram.cn'
-__version__ = u'3.0.1'
-gb_v.update = '29th May, 2019'
+__version__ = u'3.0.2'
+gb_v.update = '4th Aug, 2019'
 gb_v.version = __version__
 gb_v.title = '赛事管家（专业版）'
 

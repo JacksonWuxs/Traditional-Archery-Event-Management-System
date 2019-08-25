@@ -4,8 +4,8 @@
 # http://msdn.microsoft.com/en-us/library/ms646997.aspx
 VSVersionInfo(
   ffi=FixedFileInfo(
-    filevers=(2, 1, 1, 2),
-    prodvers=(2, 1, 1, 2),
+    filevers=(3, 0, 1, 1),
+    prodvers=(3, 0, 1, 1),
     # Contains a bitmask that specifies the valid bits 'flags'r
     mask=0x3f,
     # Contains a bitmask that specifies the Boolean attributes of the file.
@@ -20,7 +20,7 @@ VSVersionInfo(
     # 0x0 - the function is not defined for this fileType
     subtype=0x0,
     # Creation date and time stamp.
-    date=(3, 5)
+    date=(5, 29)
     ),
   kids=[
     StringFileInfo(
@@ -28,13 +28,13 @@ VSVersionInfo(
       StringTable(
         u'040904E4',
         [StringStruct(u'CompanyName', "Kitgram Organization"),
-        StringStruct(u'FileDescription', 'Archery Manager'),
-        StringStruct(u'FileVersion', u'2.1.1.2'),
-        StringStruct(u'InternalName', u'ArcheryManager'),
+        StringStruct(u'FileDescription', 'Distributed Archery Events Supporting System'),
+        StringStruct(u'FileVersion', u'3.0.1.1'),
+        StringStruct(u'InternalName', u'DAESS'),
         StringStruct(u'LegalCopyright', u'Copyright (c) 2018 - 2019 Xuansheng Wu'),
-        StringStruct(u'OriginalFilename', u'ArcheryManager.exe'),
-        StringStruct(u'ProductName', u'TAMES - Pro'),
-        StringStruct(u'ProductVersion', u'2.1.1.2')])
+        StringStruct(u'OriginalFilename', u'DAESS.exe'),
+        StringStruct(u'ProductName', u'DAESS - Pro'),
+        StringStruct(u'ProductVersion', u'3.0.1.1')])
       ]), 
     VarFileInfo([VarStruct(u'Translation', [1033, 1252])])
   ]
